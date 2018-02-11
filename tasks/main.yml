@@ -51,7 +51,7 @@
 
 - name: Lock down zsh directory
   file:
-    path: "{{ homebrew_prefix}}/share/zsh}}"
+    path: "{{ homebrew_prefix }}/share/zsh"
     state: directory
     mode: 755
     recurse: true
