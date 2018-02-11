@@ -46,7 +46,7 @@
     owner: "{{ ansible_user_id }}"
     group: admin
     mode: 775
-  with-items: "{{ home_brew_required_directories }}"
+  with-items: "{{ homebrew_required_directories }}"
 
 - name: Lock down zsh directory
   file:
