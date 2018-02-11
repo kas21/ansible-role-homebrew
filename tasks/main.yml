@@ -47,6 +47,7 @@
     group: admin
     mode: 775
   with_items: "{{ homebrew_required_directories }}"
+  become: yes
 
 - name: Lock down zsh directory
   file:
@@ -54,6 +55,7 @@
     state: directory
     mode: 755
     recurse: true
+  become: yes
 
 # Adjust Homebrew permissions.
 # - name: Ensure proper permissions and ownership on homebrew_brew_bin_path dirs.
