@@ -45,7 +45,7 @@
     state: directory
     owner: "{{ ansible_user_id }}"
     group: admin
-    mode: 775
+    mode: 0775
   with_items: "{{ homebrew_required_directories }}"
   become: yes
 
@@ -53,7 +53,7 @@
   file:
     path: "{{ homebrew_prefix }}/share/zsh"
     state: directory
-    mode: 755
+    mode: 0755
     recurse: true
   become: yes
 
