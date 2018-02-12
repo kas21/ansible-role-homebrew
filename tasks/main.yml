@@ -39,7 +39,7 @@
     depth: 1
 
 # Create and set permissions on all directories used by Homebrew
-- name: Ensure all Homebrew directories exist
+- name: Create directories that require 0775 permissions 
   file:
     path: "{{ item }}"
     state: directory
@@ -49,11 +49,11 @@
   with_items: "{{ homebrew_required_directories_0775 }}"
   become: yes
 
-- name: Lock down zsh directory
+- name: Create directories that require 0755 permissions 
   file:
     path: "{{ item }}"
     state: directory
-    owner: "{{ ansible_user_idi }}"
+    owner: "{{ ansible_user_id }}"
     group: admin
     mode: 0755
   with_items: "{{ homebrew_required_directories_0755 }}"
