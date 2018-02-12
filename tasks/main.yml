@@ -6,7 +6,7 @@
     path: "{{ homebrew_prefix }}"
     owner: root
     state: directory
-  become: "yes"
+  become: yes
   when: "ansible_distribution_version.startswith('10.13')"
 
 - name: Ensure Homebrew parent directory has correct permissions (on non-'High Sierra' versions of Mac OS X).
@@ -47,6 +47,7 @@
     group: admin
     mode: 0775
   with_items: "{{ homebrew_required_directories }}"
+  when: "{{ item }}.find('zsh') = -1"
   become: yes
 
 - name: Lock down zsh directory
@@ -56,25 +57,6 @@
     mode: 0755
     recurse: true
   become: yes
-
-# Adjust Homebrew permissions.
-# - name: Ensure proper permissions and ownership on homebrew_brew_bin_path dirs.
-#  file:
-#    path: "{{ homebrew_brew_bin_path }}"
-#    state: directory
-#    owner: "{{ ansible_user_id }}"
-#    group: admin
-#    mode: 0775
-#  become: yes
-#
-#- name: Ensure proper ownership on homebrew_install_path subdirs.
-#  file:
-#    path: "{{ homebrew_install_path }}"
-#    state: directory
-#    owner: "{{ ansible_user_id }}"
-#    group: admin
-#    recurse: true
-#  become: yes
 
 # Place brew binary in proper location and complete setup.
 - name: Check if homebrew binary is already in place.
